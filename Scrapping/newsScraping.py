@@ -1,18 +1,18 @@
 import pandas as pd
 import time
 
-from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
+from SeleniumUtils import driver_factory
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 
-service = Service()
-options = webdriver.ChromeOptions()
-driver = webdriver.Chrome(service= service, options= options)
+
+driver = driver_factory.create_driver()
+topic = "California"
+months = 5
 try:
     driver.maximize_window()
     driver.get('https://www.latimes.com/')
-    time.sleep(5)
+    time.sleep(8)
     driver.execute_script('window.scrollBy(0, 900);')
     time.sleep(3)
     driver.find_element(By.CSS_SELECTOR, '[data-element="search-button"]').click()
