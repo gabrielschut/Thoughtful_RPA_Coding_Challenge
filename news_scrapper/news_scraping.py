@@ -1,7 +1,7 @@
-import pandas as pd
 import time
 from datetime import date
 import re
+import urllib.request
 
 from utils import driver_factory, last_date
 from article import Article
@@ -70,31 +70,32 @@ def la_news_scrapper(searsh_term ,topic, months):
             if (last_date.is_before(publich_date,months)):
                 next_page = False
                 break
+            file_path = 'news_scrapper/pictures'
             title = i.find_element(By.CSS_SELECTOR, '.promo-content .promo-title-container .promo-title a').text
             description = ''
             try:
                 description = i.find_element(By.CSS_SELECTOR, '.promo-wrapper .promo-description').text
             except:
                 description = ''
-            picture_file_name = ''
+            image_file_name = ''
             try:
-                imagem = i.find_element(By.CSS_SELECTOR, '.promo-media picture img')
-                picture_file_name = imagem.get_attribute('srcset')
+                image = i.find_element(By.CSS_SELECTOR, '.promo-media picture img')
+                image_file_name = image.get_attribute('src')
             except:
-                picture_file_name = None
+                image_file_name = None
+            try:
+                urllib.request.urlretrieve(image_file_name, file_path)
+                time.sleep(2)
+            except:
+                1 == 1
             money_on_text = contains_money_on_text(title,description)
             times_search_term_appears = count_ocurrences(searsh_term,title, description)
-            temp_article = Article(title,publich_date,description,picture_file_name, money_on_text,times_search_term_appears)
+            temp_article = Article(title,publich_date,description,image_file_name, money_on_text,times_search_term_appears)
             article_list.append(temp_article)
         try:
             driver.find_element(By.CLASS_NAME, 'search-results-module-next-page').click()
         except:
             break
         time.sleep(3)
-    try:
-        driver.quit()
-    except:
-        1 == 1
+    driver.quit()
     return article_list
-
-
