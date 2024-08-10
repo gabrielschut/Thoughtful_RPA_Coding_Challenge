@@ -25,25 +25,24 @@ def contains_money_on_text(title, description):
         return False
 
 
-def count_ocurrences(sear_phrase : str, title : str, description : str):
-    ocorrences : int
-    ocorrences = title.lower().count(sear_phrase.lower())
-    ocorrences += description.lower().count(sear_phrase.lower())
+def count_ocurrences(search_phrase : str, title : str, description : str):
+    ocorrences = title.lower().count(search_phrase.lower())
+    ocorrences += description.lower().count(search_phrase.lower())
     return ocorrences
 
 
-def la_news_scrapper(searsh_term ,topic, months):
+def la_news_scrapper(search_term ,topic, months):
     driver = driver_factory.create_driver()
     article_list = []
     driver.maximize_window()
     driver.get('https://www.latimes.com/')
     time.sleep(5)
-    driver.execute_script('window.scrollBy(0, 900);')
+    driver.execute_script('window.scrollBy(0, 800);')
     time.sleep(3)
     driver.find_element(By.CSS_SELECTOR, '[data-element="search-button"]').click()
     time.sleep(3)
     searchbar = driver.find_element(By.CSS_SELECTOR, '[data-element="search-form-input"]')
-    searchbar.send_keys(searsh_term)
+    searchbar.send_keys(search_term)
     searchbar.send_keys(Keys.ENTER)
     time.sleep(3)
     topics = driver.find_elements(By.CLASS_NAME, 'checkbox-input-label')
@@ -89,7 +88,7 @@ def la_news_scrapper(searsh_term ,topic, months):
             except:
                 1 == 1
             money_on_text = contains_money_on_text(title,description)
-            times_search_term_appears = count_ocurrences(searsh_term,title, description)
+            times_search_term_appears = count_ocurrences(search_term,title, description)
             temp_article = Article(title,publich_date,description,image_file_name, money_on_text,times_search_term_appears)
             article_list.append(temp_article)
         try:

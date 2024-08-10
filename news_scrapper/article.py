@@ -24,5 +24,5 @@ class Article:
             'description': self.description,
             'picture file name': self.picture_file_name,
             'times_search_term_appears': self.times_search_term_appears,
-            'Money on text': 'TRUE' if self.money_on_text else 'False'
+            'Money on text': self.money_on_text
             }
