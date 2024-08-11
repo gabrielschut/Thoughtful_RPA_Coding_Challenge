@@ -17,6 +17,7 @@ PATH:
   - .
 PYTHONPATH:
   - .
+  - output
 ignoreFiles:
   - .gitignore
 
