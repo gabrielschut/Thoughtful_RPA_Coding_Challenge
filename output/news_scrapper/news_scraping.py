@@ -28,7 +28,7 @@ def count_ocurrences(search_phrase : str, title : str, description : str):
     return ocorrences
 
 
-def la_news_scrapper(search_term ,select_topic, months):
+def la_news_scrapper(search_term : str,select_topic : str, months : int):
     browser = Selenium() 
     article_list = []
     browser.open_available_browser('https://www.latimes.com/', headless= True)

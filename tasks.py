@@ -1,6 +1,7 @@
 from robocorp.tasks import task
 from output.news_scrapper import news_scraping, xls_generator
-
+import json
+import os
 
 @task
 def solve_challenge():
@@ -35,10 +36,16 @@ def solve_challenge():
 
     Download the news picture and specify the file name in the Excel file
     Follow steps 4-6 for all news that falls within the required time period
-
     """
+    with open("config.json") as config_file:
+        config = json.load(config_file)
+
+    config['search_term'] = os.getenv('search_term', config.get('search_term'))
+    config['select_topic'] = os.getenv('select_topic', config.get('select_topic'))
+    config['months'] = os.getenv('months', config.get('months'))
+
     try:
-        articles_list = news_scraping.la_news_scrapper('dollars', 'Hollywood Inc.', 5)
+        articles_list = news_scraping.la_news_scrapper(config['search_term'],config['select_topic'], config['months'])
         xls_generator.generate_xlsx_from_articles(articles_list)
     finally:
         # A place for teardown and cleanups. (Playwright handles browser closing)
