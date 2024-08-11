@@ -9,8 +9,8 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import Select
 
-from output.news_scrapper.utils import last_date, file_maneger
-from output.news_scrapper.article import Article
+from output.dev_data.utils import last_date, file_maneger
+from output.dev_data.article import Article
 
 
 def contains_money_on_text(title, description):
@@ -31,7 +31,7 @@ def count_ocurrences(search_phrase : str, title : str, description : str):
 def la_news_scrapper(search_term : str,select_topic : str, months : int):
     browser = Selenium() 
     article_list = []
-    browser.open_available_browser('https://www.latimes.com/', headless= True)
+    browser.open_available_browser('https://www.latimes.com/')
     browser.driver.maximize_window()
     browser.click_button("//button[@data-element='search-button']")
     time.sleep(3)

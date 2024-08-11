@@ -1,5 +1,5 @@
 from robocorp.tasks import task
-from output.news_scrapper import news_scraping, xls_generator
+from output.dev_data import news_scraping, xls_generator
 import json
 import os
 
