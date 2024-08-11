@@ -19,3 +19,9 @@ PYTHONPATH:
   - .
 ignoreFiles:
   - .gitignore
+
+dependencies:
+  - python=3.10
+  - pip
+  - pip:
+      - rpaframework
