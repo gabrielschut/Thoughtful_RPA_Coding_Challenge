@@ -4,7 +4,7 @@ import urllib.request
 
 def download_image(image_url, file_name):
     # Ensure the output directory exists
-    output_directory = 'output/pictures'
+    output_directory = 'output/pictures/'
     if not os.path.exists(output_directory):
         os.makedirs(output_directory)
 

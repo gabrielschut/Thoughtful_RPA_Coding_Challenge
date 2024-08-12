@@ -9,8 +9,9 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import Select
 
-from output.utils import last_date, file_maneger
-from output.article import Article
+import file_maneger
+import last_date
+from article import Article
 
 
 def contains_money_on_text(title, description):
@@ -31,14 +32,17 @@ def count_ocurrences(search_phrase : str, title : str, description : str):
 def la_news_scrapper(search_term : str,select_topic : str, months : int):
     browser = Selenium() 
     article_list = []
-    browser.open_available_browser('https://www.latimes.com/', headless= False)
+    browser.open_available_browser('https://www.latimes.com/', headless= True)
     browser.driver.maximize_window()
     browser.click_button("//button[@data-element='search-button']")
     time.sleep(3)
     browser.input_text("//input[@data-element='search-form-input']", search_term)
     browser.input_text("//input[@data-element='search-form-input']", Keys.ENTER, False)
     time.sleep(5)
-    browser.click_button("//button[@class='button see-all-button']")
+    try:
+        browser.click_button("//button[@class='button see-all-button']")
+    except:
+        time.sleep(1)
     time.sleep(3)
     topics = browser.driver.find_elements(By.CLASS_NAME, 'checkbox-input-label')
     if (not select_topic == '' or select_topic == None):
@@ -83,7 +87,7 @@ def la_news_scrapper(search_term : str,select_topic : str, months : int):
                     image_file_name = file_name
                     time.sleep(2)
                 except:
-                    1 == 1
+                    pass
             money_on_text = contains_money_on_text(title,description)
             times_search_term_appears = count_ocurrences(search_term,title, description)
             temp_article = Article(title,publich_date,description,image_file_name, money_on_text,times_search_term_appears)

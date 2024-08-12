@@ -2,7 +2,7 @@ from robocorp.tasks import task
 import json
 import os
 
-from output import xls_generator, news_scraping
+import xls_generator, news_scraping
 
 
 @task
@@ -39,7 +39,7 @@ def solve_challenge():
     Download the news picture and specify the file name in the Excel file
     Follow steps 4-6 for all news that falls within the required time period
     """
-    with open("output/config.json") as config_file:
+    with open("config.json") as config_file:
         config = json.load(config_file)
 
     config['search_term'] = os.getenv('search_term', config.get('search_term'))

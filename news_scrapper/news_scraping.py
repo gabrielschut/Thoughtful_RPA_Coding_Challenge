@@ -3,7 +3,8 @@ from datetime import date
 import re
 import urllib.request
 
-from utils import driver_factory, last_date
+import last_date
+from utils import driver_factory
 from article import Article
 
 from selenium.webdriver.common.keys import Keys

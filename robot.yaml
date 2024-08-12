@@ -20,13 +20,3 @@ PYTHONPATH:
   - ./output
 ignoreFiles:
   - .gitignore
-
-dependencies:
-  - python=3.10.12
-  - pip
-  - pip:
-    - rpaframework==28.5.1        # https://rpaframework.org/releasenotes.html
-    - robocorp==2.0.1             # https://pypi.org/project/robocorp
-    - robocorp-browser==2.3.3     # https://pypi.org/project/robocorp-browser
-    - requests==2.31.0            # https://pypi.org/project/requests
-    - pandas
