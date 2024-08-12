@@ -9,8 +9,8 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import Select
 
-from output.dev_data.utils import last_date, file_maneger
-from output.dev_data.article import Article
+from utils import last_date, file_maneger
+from article import Article
 
 
 def contains_money_on_text(title, description):

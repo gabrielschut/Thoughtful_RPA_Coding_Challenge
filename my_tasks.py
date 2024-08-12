@@ -1,8 +1,10 @@
 from robocorp.tasks import task
-from output import dev_data
-from dev_data import news_scraping, xls_generator
 import json
 import os
+
+import xls_generator
+import news_scraping
+
 
 @task
 def solve_challenge():
