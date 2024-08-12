@@ -2,8 +2,7 @@ from robocorp.tasks import task
 import json
 import os
 
-import xls_generator
-import news_scraping
+from output import xls_generator, news_scraping
 
 
 @task
