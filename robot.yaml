@@ -22,7 +22,7 @@ ignoreFiles:
   - .gitignore
 
 dependencies:
-  - python=3.10
+  - python=3.10.12
   - pip
   - pip:
     - rpaframework==28.5.1        # https://rpaframework.org/releasenotes.html
